@@ -113,8 +113,8 @@ mutation {
 
 Структура бази даних
 ·   	**Користувачі (users):**
-·   	- id (Primary Key)
-·   	- username (string)
+      - id (Primary Key)
+      - username (string)
 ·   	- email (string)
 ·   	- password (hashed string)
 ·   	- createdAt (date)
