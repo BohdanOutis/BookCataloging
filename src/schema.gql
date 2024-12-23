@@ -1,0 +1,193 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Genre {
+  id: Int!
+  name: String!
+  books: [Book!]!
+}
+
+type Author {
+  id: Int!
+  name: String!
+  bio: String
+  books: [Book!]!
+}
+
+type Rating {
+  id: Int!
+  rating: Int!
+}
+
+type Comment {
+  id: Int!
+  content: String!
+  createdAt: DateTime!
+  user: User!
+  book: Book!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Edition {
+  id: Int!
+  year: Int!
+  publisher: String!
+  book: Book!
+}
+
+type ReadingHistory {
+  id: Int!
+  dateRead: DateTime!
+  user: User!
+  book: Book!
+}
+
+type Book {
+  id: Int!
+  title: String!
+  description: String!
+  coverUrl: String!
+  addedAt: DateTime!
+  averageRating: Float!
+  addedByUser: User!
+  genres: [Genre!]!
+  authors: [Author!]!
+  ratings: [Rating!]!
+  comments: [Comment!]!
+  editions: [Edition!]!
+  readingHistory: [ReadingHistory!]!
+}
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  books: [Book!]!
+  ratings: [Rating!]!
+  comments: [Comment!]!
+  readingHistory: [ReadingHistory!]!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  averageRating(bookId: Int!): Float!
+  booksByRating(rating: Int!): [Book!]!
+  books: [Book!]!
+  book(id: Int!): Book!
+  authors: [Author!]!
+  author(id: Int!): Author!
+  commentsByBook(bookId: Int!): [Comment!]!
+  findEditionsByBook(bookId: Int!): [Edition!]!
+  genres: [Genre!]!
+  genre(id: Int!): Genre!
+  getUserReadingHistory(userId: Int!): [ReadingHistory!]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserDto!): User!
+  updateUser(id: Int!, updateUserInput: UpdateUserDto!): User!
+  removeUser(id: Int!): Boolean!
+  createRating(createRatingInput: CreateRatingDto!, userId: Int!): Rating!
+  updateRating(ratingId: Int!, newRating: Int!, userId: Int!): Rating!
+  removeRating(ratingId: Int!, userId: Int!): Boolean!
+  createBook(createBookDto: CreateBookDto!): Book!
+  updateBook(id: Int!, updateBookDto: UpdateBookDto!): Book!
+  removeBook(id: Int!): Boolean!
+  createAuthor(createAuthorDto: CreateAuthorDto!): Author!
+  updateAuthor(id: Int!, updateAuthorDto: UpdateAuthorDto!): Author!
+  removeAuthor(id: Int!): Boolean!
+  createComment(createCommentDto: CreateCommentDto!, userId: Int!, bookId: Int!): Comment!
+  updateComment(id: Int!, updateCommentDto: UpdateCommentDto!, userId: Int!): Comment!
+  deleteComment(id: Int!, userId: Int!): Boolean!
+  createEdition(createEditionInput: CreateEditionDto!, bookId: Int!): Edition!
+  updateEdition(id: Int!, updateEditionInput: UpdateEditionDto!): Edition!
+  removeEdition(id: Int!): Boolean!
+  createGenre(createGenreInput: CreateGenreDto!): Genre!
+  updateGenre(id: Int!, updateGenreInput: UpdateGenreDto!): Genre!
+  removeGenre(id: Int!): Boolean!
+  addReadingHistory(createReadingHistoryInput: CreateReadingHistoryDto!, userId: Int!): ReadingHistory!
+  removeReadingHistory(userId: Int!, bookId: Int!): Boolean!
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserDto {
+  username: String
+  email: String
+  password: String
+}
+
+input CreateRatingDto {
+  rating: Int!
+  bookId: Int!
+}
+
+input CreateBookDto {
+  title: String!
+  description: String!
+  coverUrl: String!
+}
+
+input UpdateBookDto {
+  title: String
+  description: String
+  coverUrl: String
+  year: Float
+}
+
+input CreateAuthorDto {
+  name: String!
+  bio: String!
+}
+
+input UpdateAuthorDto {
+  name: String
+  bio: String
+}
+
+input CreateCommentDto {
+  content: String!
+  bookId: Float!
+}
+
+input UpdateCommentDto {
+  content: String
+}
+
+input CreateEditionDto {
+  bookId: Float!
+  year: Float!
+  publisher: String!
+}
+
+input UpdateEditionDto {
+  bookId: Float
+  year: Float
+  publisher: String
+}
+
+input CreateGenreDto {
+  name: String!
+}
+
+input UpdateGenreDto {
+  name: String
+}
+
+input CreateReadingHistoryDto {
+  bookId: Int!
+  dateRead: String
+}

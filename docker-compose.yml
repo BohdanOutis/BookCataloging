@@ -1,0 +1,21 @@
+# Docker Compose file without version declaration
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: your_db_username
+      POSTGRES_PASSWORD: your_db_password
+      POSTGRES_DB: book_catalog
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - book_network
+networks:
+  book_network:
+    driver: bridge
+volumes:
+  postgres-data:
+    driver: local
