@@ -73,8 +73,8 @@ POST /books
   "title": "The Great Gatsby",
   "description": "A classic novel by F. Scott Fitzgerald",
   "coverUrl": "https://example.com/cover.jpg",
-  "genres": [1, 2],
-  "authors": [3]
+  "genres": [8],
+  "authors": [5]
 }
 ```
 ### GraphQL API
