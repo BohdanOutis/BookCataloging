@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { Book } from '../books/entities/Book';
 import { Author } from '../authors/entities/Author';
-import { Genre } from '../genres/entities/Genre';
+import { Genres } from '../genres/entities/Genre';
 
 export const seedData = async (dataSource: DataSource) => {
     console.log('Connecting to the database...');
@@ -19,7 +19,7 @@ export const seedData = async (dataSource: DataSource) => {
 
     // Seed Genres
     const genres = [{ name: 'Fantasy' }, { name: 'Adventure' }];
-    const genreEntities = genres.map((genre) => dataSource.manager.create(Genre, genre));
+    const genreEntities = genres.map((genre) => dataSource.manager.create(Genres, genre));
     await dataSource.manager.save(genreEntities);
 
     // Seed Books

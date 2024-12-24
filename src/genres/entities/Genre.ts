@@ -4,7 +4,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType() // Define GraphQL object type
 @Entity('genres')
-export class Genre {
+export class Genres {
   @PrimaryGeneratedColumn()
   @Field(() => Int) // Expose this field as an integer in GraphQL
   id: number;

@@ -18,16 +18,16 @@ export class BooksController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get book details by ID' })
-  @ApiResponse({ status: 200, description: 'Book details fetched successfully.' })
-  @ApiResponse({ status: 404, description: 'Book not found.' })
+  @ApiOperation({ summary: 'Get all books' })
+  @ApiResponse({ status: 200, description: 'List of all books.' })
   async getAllBooks() {
     return this.bookService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get all books' })
-  @ApiResponse({ status: 200, description: 'List of all books.' })
+  @ApiOperation({ summary: 'Get book details by ID' })
+  @ApiResponse({ status: 200, description: 'Book details fetched successfully.' })
+  @ApiResponse({ status: 404, description: 'Book not found.' })
   async getBookById(@Param('id') id: string) {
     return this.bookService.findOne(Number(id));
   }

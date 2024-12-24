@@ -13,7 +13,7 @@ import { ReadingHistoryModule } from './reading_history/reading_history.module';
 import { UsersResolver } from './users/resolvers/users.resolver';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { join } from 'path';
+import path, { join } from 'path';
 
 @Module({
   imports: [
@@ -30,14 +30,14 @@ import { join } from 'path';
     password: 'testuser',
     database: 'book_catalog',
     entities: [
-      __dirname + '/typeorm/entities/User',
-      __dirname + '/typeorm/entities/Book',
-      __dirname + '/typeorm/entities/Genre',
-      __dirname + '/typeorm/entities/Author',
-      __dirname + '/typeorm/entities/Rating',
-      __dirname + '/typeorm/entities/ReadingHistory',
-      __dirname + '/typeorm/entities/Edition',
-      __dirname + '/typeorm/entities/Comment',
+      path.resolve(__dirname, 'books', 'entities', '*.ts'),
+      path.resolve(__dirname, 'authors', 'entities', '*.ts'),
+      path.resolve(__dirname, 'genres', 'entities', '*.ts'),
+      path.resolve(__dirname, 'edition', 'entities', '*.ts'),
+      path.resolve(__dirname, 'comments', 'entities', '*.ts'),
+      path.resolve(__dirname, 'ratings', 'entities', '*.ts'),
+      path.resolve(__dirname, 'users', 'entities', '*.ts'),
+      path.resolve(__dirname, 'reading_history', 'entities', '*.ts'),
     ],
     synchronize: true,
     logging: true,

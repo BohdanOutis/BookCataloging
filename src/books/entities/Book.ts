@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { User } from '../../users/entities/User';
-import { Genre } from '../../genres/entities/Genre';
+import { Genres } from '../../genres/entities/Genre';
 import { Author } from '../../authors/entities/Author';
 import { Rating } from '../../ratings/entities/Rating';
 import { Comment } from '../../comments/entities/Comment';
@@ -40,10 +40,10 @@ export class Book {
   @Field(() => User) // Expose related User entity in GraphQL
   addedByUser: User;
 
-  @ManyToMany(() => Genre)
+  @ManyToMany(() => Genres)
   @JoinTable()
-  @Field(() => [Genre]) // Expose genres as an array of Genre entities in GraphQL
-  genres: Genre[];
+  @Field(() => [Genres]) // Expose genres as an array of Genre entities in GraphQL
+  genres: Genres[];
 
   @ManyToMany(() => Author)
   @JoinTable()
@@ -74,7 +74,7 @@ export class Book {
     addedAt: Date,
     averageRating: number,
     addedByUser: User,
-    genres: Genre[],
+    genres: Genres[],
     authors: Author[],
     ratings: Rating[],
     comments: Comment[],

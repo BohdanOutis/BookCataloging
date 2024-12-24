@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Genre } from './entities/Genre';
+import { Genres } from './entities/Genre';
 import { CreateGenreDto } from './dtos/CreateGenre.dto';
 import { UpdateGenreDto } from './dtos/UpdateGenre.dto';
 import { Book } from '../books/entities/Book';
@@ -9,8 +9,8 @@ import { Book } from '../books/entities/Book';
 @Injectable()
 export class GenresService {
   constructor(
-    @InjectRepository(Genre)
-    private readonly genreRepository: Repository<Genre>,
+    @InjectRepository(Genres)
+    private readonly genreRepository: Repository<Genres>,
     @InjectRepository(Book)
     private readonly bookRepository: Repository<Book>,
   ) {}

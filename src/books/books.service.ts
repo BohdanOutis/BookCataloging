@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Book } from './entities/Book';
 import { CreateBookDto } from './dtos/CreateBook.dto';
 import { UpdateBookDto } from './dtos/UpdateBook.dto';
-import { Genre } from '../genres/entities/Genre';
+import { Genres } from '../genres/entities/Genre';
 import { Author } from '../authors/entities/Author';
 
 @Injectable()
@@ -12,8 +12,8 @@ export class BooksService {
   constructor(
     @InjectRepository(Book)
     private readonly bookRepository: Repository<Book>,
-    @InjectRepository(Genre)
-    private readonly genreRepository: Repository<Genre>,
+    @InjectRepository(Genres)
+    private readonly genreRepository: Repository<Genres>,
     @InjectRepository(Author)
     private readonly authorRepository: Repository<Author>,
   ) {}

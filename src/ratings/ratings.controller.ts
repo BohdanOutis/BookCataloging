@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Param, Put, Delete, Get } from '@nestjs/common';
 import { CreateRatingDto } from './dtos/CreateRating.dto';
 import { RatingsService } from './ratings.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -19,8 +19,8 @@ export class RatingsController {
 
   // Update an existing rating
   @Put(':ratingId')
-  @ApiOperation({ summary: 'Get average rating for a book' })
-  @ApiResponse({ status: 200, description: 'Average rating fetched successfully.' })
+  @ApiOperation({ summary: 'Update ration of a book' })
+  @ApiResponse({ status: 200, description: 'Book rating fetched successfully.' })
   @ApiResponse({ status: 404, description: 'Book not found.' })
   async updateRating(
     @Param('ratingId') ratingId: number,
@@ -29,6 +29,17 @@ export class RatingsController {
   ) {
     return this.ratingService.update(ratingId, newRating, userId);
   }
+
+  @Get()
+  @ApiOperation({ summary: 'Get average rating for a book' })
+  @ApiResponse({ status: 200, description: 'Average rating fetched successfully.' })
+  @ApiResponse({ status: 404, description: 'Book not found.' })
+  async getAverageRating(
+    @Param('bookId') bookId: number,
+  ){
+    return this.ratingService.getAverageRating(bookId)
+  }
+
 
   // Delete a rating
   @Delete(':ratingId')

@@ -1,6 +1,6 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString, IsUrl, Min, Max } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, IsUrl, Min, Max } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateBookDto {
@@ -17,20 +17,22 @@ export class CreateBookDto {
   description: string;
 
   @Field()
-  @IsOptional()
   @IsUrl()
-  coverUrl?: string;
+  coverUrl: string;
 
-  @ApiProperty({ description: 'Year'})
-  @IsInt()
-  @Min(1000) // Earliest possible publication year
-  @Max(new Date().getFullYear()) // Current year as the upper limit
-  year: number;
+  @Field(() => [Int])
+  @ApiProperty({ description: 'Year', type: [Number] })
+  @IsInt({ each: true }) // Кожен елемент має бути цілим числом
+  @Min(1000, { each: true }) // Мінімальне значення 1000
+  @Max(new Date().getFullYear(), { each: true }) // Максимальне значення - поточний рік
+  year: number[]; // Масив років
 
+  @Field(() => [Int])
   @ApiProperty({ description: 'Genre IDs', type: [Number] })
   @IsNotEmpty()
   genres: number[]; // Array of genre IDs
 
+  @Field(() => [Int])
   @ApiProperty({ description: 'Authors IDs', type: [Number] })
   @IsNotEmpty()
   authors: number[]; // Array of author IDs

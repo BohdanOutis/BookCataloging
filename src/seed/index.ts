@@ -4,7 +4,7 @@ import { Book } from '../books/entities/Book';
 import { ReadingHistory } from '../reading_history/entities/ReadingHistory';
 import { Rating } from '../ratings/entities/Rating';
 import { Comment } from '../comments/entities/Comment';
-import { Genre } from '../genres/entities/Genre';
+import { Genres } from '../genres/entities/Genre';
 import { Edition } from '../edition/entities/Edition';
 import { Author } from '../authors/entities/Author';
 
@@ -17,7 +17,7 @@ const dataSource = new DataSource({
   database: 'book_catalog', // Your database name
   synchronize: true,
   logging: true,
-  entities: [User, Book, ReadingHistory, Rating, Comment, Genre, Edition, Author],
+  entities: [User, Book, ReadingHistory, Rating, Comment, Genres, Edition, Author],
 });
 
 const seedDatabase = async () => {
@@ -39,7 +39,7 @@ const seedDatabase = async () => {
 
     // Seed Genres
     console.log('Seeding genres...');
-    const genreRepository = dataSource.getRepository(Genre);
+    const genreRepository = dataSource.getRepository(Genres);
     const genre1 = genreRepository.create({ name: 'Fantasy' });
     const genre2 = genreRepository.create({ name: 'Science Fiction' });
     const genre3 = genreRepository.create({ name: 'Mystery' });

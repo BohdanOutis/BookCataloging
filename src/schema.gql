@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Genre {
+type Genres {
   id: Int!
   name: String!
   books: [Book!]!
@@ -55,7 +55,7 @@ type Book {
   addedAt: DateTime!
   averageRating: Float!
   addedByUser: User!
-  genres: [Genre!]!
+  genres: [Genres!]!
   authors: [Author!]!
   ratings: [Rating!]!
   comments: [Comment!]!
@@ -87,8 +87,8 @@ type Query {
   author(id: Int!): Author!
   commentsByBook(bookId: Int!): [Comment!]!
   findEditionsByBook(bookId: Int!): [Edition!]!
-  genres: [Genre!]!
-  genre(id: Int!): Genre!
+  genres: [Genres!]!
+  genre(id: Int!): Genres!
   getUserReadingHistory(userId: Int!): [ReadingHistory!]!
 }
 
@@ -111,8 +111,8 @@ type Mutation {
   createEdition(createEditionInput: CreateEditionDto!, bookId: Int!): Edition!
   updateEdition(id: Int!, updateEditionInput: UpdateEditionDto!): Edition!
   removeEdition(id: Int!): Boolean!
-  createGenre(createGenreInput: CreateGenreDto!): Genre!
-  updateGenre(id: Int!, updateGenreInput: UpdateGenreDto!): Genre!
+  createGenre(createGenreInput: CreateGenreDto!): Genres!
+  updateGenre(id: Int!, updateGenreInput: UpdateGenreDto!): Genres!
   removeGenre(id: Int!): Boolean!
   addReadingHistory(createReadingHistoryInput: CreateReadingHistoryDto!, userId: Int!): ReadingHistory!
   removeReadingHistory(userId: Int!, bookId: Int!): Boolean!
@@ -139,6 +139,9 @@ input CreateBookDto {
   title: String!
   description: String!
   coverUrl: String!
+  year: [Int!]!
+  genres: [Int!]!
+  authors: [Int!]!
 }
 
 input UpdateBookDto {
@@ -146,6 +149,8 @@ input UpdateBookDto {
   description: String
   coverUrl: String
   year: Float
+  genres: [Int!]
+  authors: [Int!]
 }
 
 input CreateAuthorDto {

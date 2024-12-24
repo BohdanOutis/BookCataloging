@@ -16,7 +16,7 @@ describe('BooksService', () => {
           },
         },
         {
-          provide: 'GenreRepository', // Mock the GenresService
+          provide: 'GenresRepository', // Mock the GenresService
           useValue: {
             findAll: jest.fn(),
             findOne: jest.fn(),
